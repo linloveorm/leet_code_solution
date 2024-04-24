@@ -9,10 +9,71 @@ class Solution(object):
             strsLen =[len(i) for i in strs]
             strsLenIndex = strsLen.index(min(strsLen))
             shortestStr = strs[strsLenIndex]
-            del strs[strsLenIndex]
-            # print(strs)
+            # del strs[strsLenIndex]
+            print(strs)
             all_the_same = all(element == strs[0] for element in strs)
             all_same_size = all(len(element) == len(strs[0]) for element in strs)
+            print(all_the_same)
+            if all_the_same:
+                print("Hi")
+                return strs[0]
+            else:            
+                for i in range(1, len(shortestStr)+1):
+                    print("Yes: ",shortestStr[:i])
+                    
+                    all_prefix = all(item[:i] == shortestStr[:i] for item in strs)
+                    print("No: ",all_prefix)
+                    
+                    if all_prefix:
+                        print("Test: ",shortestStr[:i])
+                        prefix = shortestStr[:i]
+                        if len(shortestStr) == 1 or i == len(shortestStr):
+                            return prefix
+                        
+                    else:
+                        print("prefix ",prefix)
+                        return prefix
+                
+
+        
+
+def main():
+    strs1 = ["flower","flow","flight"]
+    strs2 = ["dog","racecar","car"]
+    strs3 = ["ab", "a"]
+    strs4 = ["flower","flower","flower","flower"]
+    strs5 = ["a", "b"]
+    strs6 = ["cir", "car"]
+    strs7 = ["reflower","flow","flight"]
+    strs8 = ["aaa", "aa", "aaa"]
+
+
+    solution = Solution()
+    prefix = solution.longestCommonPrefix(strs8)
+    print(prefix)
+    
+
+
+
+
+main()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                # for item in strs:
+                #     if shortestStr[:i] == strs[:i]:
+
             # if all_same_size:
             #     for j in range(len(shortestStr)+1):
             #         print(j)
@@ -33,31 +94,31 @@ class Solution(object):
             #             #     return shortestStr[:j]
             # else:
 
-            for i in range(len(shortestStr)+1):
-                previous = prefix
-                # if i == len(shortestStr):
-                #     print("yes")
-                if i == 0 or len(shortestStr) == 1:
-                    prefix = shortestStr
-                else:
-                    prefix = shortestStr[:-i]
+            # for i in range(len(shortestStr)+1):
+            #     previous = prefix
+            #     # if i == len(shortestStr):
+            #     #     print("yes")
+            #     if i == 0 or len(shortestStr) == 1:
+            #         prefix = shortestStr
+            #     else:
+            #         prefix = shortestStr[:-i]
                 
-                if len(prefix) != 0:
-                    print(prefix)
-                    if i == 0:
-                        all_prefix = all(item == prefix for item in strs)
-                        print("--", str(all_prefix))
-                    else:
-                        all_prefix = all(item[:i] == prefix for item in strs)
-                        print("++", str(all_prefix))
+            #     if len(prefix) != 0:
+            #         print(prefix)
+            #         if i == 0:
+            #             all_prefix = all(item == prefix for item in strs)
+            #             print("--", str(all_prefix))
+            #         else:
+            #             all_prefix = all(item[:i] == prefix for item in strs)
+            #             print("++", str(all_prefix))
                     
                     # if all_same_size:
                         
                     
-                    if all_prefix:
-                        return prefix
-                    else:
-                        continue
+                    # if all_prefix:
+                    #     return prefix
+                    # else:
+                    #     continue
                     # print(prefix)
                     # all_prefix = all(item[:i] == prefix for item in strs)
                     # for it in strs:
@@ -133,23 +194,3 @@ class Solution(object):
                         #     return ""
                         
                         # elif len(prefix) == 1 and prefix in item[:len(prefix)]:
-
-        
-
-def main():
-    strs1 = ["flower","flow","flight"]
-    strs2 = ["dog","racecar","car"]
-    strs3 = ["ab", "a"]
-    strs4 = ["flower","flower","flower","flower"]
-    strs5 = ["a", "b"]
-    strs6 = ["cir", "car"]
-
-
-    solution = Solution()
-    prefix = solution.longestCommonPrefix(strs1)
-    print(prefix)
-
-
-
-
-main()
